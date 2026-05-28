@@ -125,6 +125,12 @@ input:focus,select:focus{border-color:var(--green)}
 .lk-btn{width:44px;height:44px;border-radius:9px;border:2px solid var(--border);background:transparent;font-size:15px;font-weight:700;cursor:pointer;transition:all .15s;color:var(--gray);font-family:'Epilogue',sans-serif}
 .lk-btn:hover{border-color:var(--green);color:var(--green)}
 .lk-btn.active{background:var(--green);border-color:var(--green);color:white}
+/* PAIR CARDS */
+.pair-wrap{display:flex;gap:16px;margin-bottom:8px;}
+.pair-card{flex:1;padding:20px 18px;border-radius:14px;border:2px solid var(--border);background:var(--white);cursor:pointer;transition:all .2s;font-size:15px;font-weight:500;line-height:1.65;text-align:left;font-style:italic;color:var(--black);}
+.pair-card:hover{border-color:var(--green);background:var(--green-l);}
+.pair-card.selected{border-color:var(--green);background:var(--green-l);color:var(--green-d);font-weight:700;}
+@media(max-width:600px){.pair-wrap{flex-direction:column;}}
 .sticky-action{position:sticky;bottom:0;background:var(--white);border-top:1px solid var(--border);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;z-index:50;box-shadow:0 -4px 16px rgba(0,0,0,.06)}
 .sticky-info{font-size:13px;color:var(--gray)}
 .err-inline{font-size:13px;color:var(--red);font-weight:600;margin-bottom:8px;display:none}
@@ -191,7 +197,7 @@ input:focus,select:focus{border-color:var(--green)}
   </div>
   <div class="welcome-form">
     <h2>Bienvenue 👋</h2>
-    <p class="sub">Ce diagnostic est composé de deux parties — DISC et Valeurs — et prend environ <strong>20 minutes</strong>. Répondez spontanément, il n'y a pas de bonne ou mauvaise réponse. Votre rapport personnalisé vous sera ensuite transmis par NG Consultants.</p>
+    <p class="sub">Ce diagnostic est composé de trois parties — DISC, Valeurs (paires) et Valeurs (intensité) — et prend environ <strong>25 minutes</strong>. Répondez spontanément, il n'y a pas de bonne ou mauvaise réponse. Votre rapport personnalisé vous sera ensuite transmis par NG Consultants.</p>
     <div class="form-row">
       <div class="form-group"><label>Prénom *</label><input type="text" id="f-prenom" placeholder="Votre prénom"></div>
       <div class="form-group"><label>Nom *</label><input type="text" id="f-nom" placeholder="Votre nom"></div>
@@ -207,12 +213,13 @@ input:focus,select:focus{border-color:var(--green)}
     </div>
     <div class="intro-boxes">
       <div class="intro-box"><h4>🎯 Partie 1 — DISC</h4><p>24 blocs de descripteurs pour identifier votre style comportemental naturel. (~10 min)</p></div>
-      <div class="intro-box"><h4>💡 Partie 2 — Valeurs</h4><p>42 affirmations pour révéler vos motivations profondes à travers 7 dimensions. (~10 min)</p></div>
+      <div class="intro-box"><h4>💡 Partie 2 — Valeurs (paires)</h4><p>42 paires d'affirmations pour révéler vos priorités instinctives. (~10 min)</p></div>
+      <div class="intro-box"><h4>💡 Partie 3 — Valeurs (intensité)</h4><p>42 affirmations notées de 1 à 6 pour mesurer l'intensité de chaque valeur. (~8 min)</p></div>
     </div>
     <div class="rgpd-wrap">
       <label class="rgpd-label">
         <input type="checkbox" id="rgpd-check">
-        <span>J'accepte que mes données personnelles (nom, prénom, email) et les résultats de ce diagnostic soient traités par <strong>NG Consultants — SARL</strong> à des fins d'accompagnement personnalisé. Ces données sont hébergées via GitHub Pages et transmises par Formspree, prestataires techniques soumis aux clauses contractuelles types de l'UE. Elles ne sont pas utilisées à des fins commerciales par ces tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition en contactant <strong>ng-consultants@orange.fr</strong> ou en adressant une réclamation à la CNIL (cnil.fr). *</span>
+        <span>J'accepte que mes données personnelles (nom, prénom, email) et les résultats de ce diagnostic soient traités par <strong>NG Consultants — SARL</strong> à des fins d'accompagnement personnalisé. Ces données sont hébergées via GitHub Pages et transmises par Formspree, prestataires techniques soumis aux clauses contractuelles types de l'UE. Elles ne sont pas utilisées à des fins commerciales par ces tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition en contactant <strong>ng-consultants@orange.fr</strong> ou en adressant une réclamation à la CNIL (cnil.fr).</span>
       </label>
     </div>
     <div class="err-block" id="err-welcome">Merci de renseigner tous les champs obligatoires (*) et d'accepter les conditions.</div>
@@ -232,7 +239,7 @@ input:focus,select:focus{border-color:var(--green)}
   <div class="instr-card">
     <h3>📋 Mode d'emploi</h3>
     <ul class="instr-steps">
-      <li><div class="step-n">1</div><div>Chaque bloc présente <strong>4 descripteurs</strong>. Lisez-les tous avant de répondre.</div></li>
+      <li><div class="step-n">1</div><div>Chaque bloc présente <strong>4 descripteurs</strong>. Lisez-les tous avant de répondre. Vous devrez choisir un <strong>"+ Plus"</strong> et un <strong>"− Moins"</strong> dans chacun des blocs.</div></li>
       <li><div class="step-n">2</div><div>Cliquez <strong>"+ Plus"</strong> sur le mot qui vous ressemble <strong>le plus</strong> dans votre façon d'être habituelle.</div></li>
       <li><div class="step-n">3</div><div>Cliquez <strong>"− Moins"</strong> sur le mot qui vous ressemble <strong>le moins</strong>.</div></li>
       <li><div class="step-n">4</div><div>Répondez <strong>spontanément</strong> — votre première impression est la meilleure. Il n'y a pas de bonne réponse.</div></li>
@@ -260,7 +267,7 @@ input:focus,select:focus{border-color:var(--green)}
       <div class="disc-prog-bar"><div class="disc-prog-fill" id="disc-prog-fill" style="width:0%"></div></div>
     </div>
     <div class="disc-card" id="disc-card-wrap"></div>
-    <div class="disc-error" id="disc-err">Veuillez sélectionner un "Plus" et un "Moins" pour continuer.</div>
+    <div class="disc-error" id="disc-err">Rappel : vous devez choisir un "+ Plus" et un "− Moins" par bloc pour continuer.</div>
     <div class="disc-nav">
       <button class="btn btn-ghost" id="btn-prev" onclick="prevBlock()">← Précédent</button>
       <button class="btn btn-primary" id="btn-next" onclick="nextBlock()">Suivant →</button>
@@ -272,20 +279,20 @@ input:focus,select:focus{border-color:var(--green)}
 <div class="screen" id="s-val-intro">
 <div class="container">
   <div class="section-intro">
-    <div class="badge">Partie 2 sur 2 — Valeurs</div>
-    <h2>Vos valeurs profondes</h2>
-    <p>Cette section explore les 7 dimensions de valeurs qui motivent vos comportements et orientent vos choix de vie et de carrière.</p>
+    <div class="badge">Partie 2 sur 3 — Valeurs · Exploration instinctive</div>
+    <h2>Vos valeurs — Première exploration</h2>
+    <p>Cette première exploration de vos valeurs vous propose des choix entre deux affirmations. Il n'y a pas de bonne réponse — choisissez simplement celle qui vous ressemble le plus <strong>spontanément</strong>, sans réfléchir.</p>
   </div>
   <div class="instr-card">
     <h3>📋 Mode d'emploi</h3>
     <ul class="instr-steps">
-      <li><div class="step-n">1</div><div>Lisez chaque affirmation attentivement.</div></li>
-      <li><div class="step-n">2</div><div>Notez-la de <strong>1</strong> (Pas du tout d'accord) à <strong>6</strong> (Tout à fait d'accord).</div></li>
+      <li><div class="step-n">1</div><div>Vous allez voir <strong>42 paires d'affirmations</strong>, côte à côte.</div></li>
+      <li><div class="step-n">2</div><div>Pour chaque paire, cliquez sur celle qui vous ressemble le <strong>plus</strong>.</div></li>
       <li><div class="step-n">3</div><div>Répondez en pensant à <strong>qui vous êtes vraiment</strong> — pas à qui vous aimeriez être.</div></li>
       <li><div class="step-n">4</div><div>Faites confiance à votre <strong>première réaction</strong>, elle est souvent la plus juste.</div></li>
     </ul>
   </div>
-  <div style="text-align:center"><button class="btn btn-primary" onclick="startValues()">Démarrer les Valeurs →</button></div>
+  <div style="text-align:center"><button class="btn btn-primary" onclick="startValues()">Démarrer →</button></div>
 </div>
 </div>
 
@@ -294,13 +301,13 @@ input:focus,select:focus{border-color:var(--green)}
   <div class="disc-screen-wrap">
     <div class="disc-progress-top">
       <div class="disc-prog-label">
-        <span>Affirmation <span id="val-cur">1</span> sur 42</span>
+        <span>Paire <span id="val-cur">1</span> sur 42</span>
         <span id="val-pct-lbl">0% complété</span>
       </div>
       <div class="disc-prog-bar"><div class="disc-prog-fill" id="val-prog-fill" style="width:0%"></div></div>
     </div>
     <div class="disc-card" id="val-card-wrap"></div>
-    <div class="disc-error" id="val-err">Veuillez noter cette affirmation pour continuer.</div>
+    <div class="disc-error" id="val-err">Veuillez choisir une affirmation pour continuer.</div>
     <div class="disc-nav">
       <button class="btn btn-ghost" id="val-btn-prev" onclick="prevVal()">← Précédent</button>
       <button class="btn btn-primary" id="val-btn-next" onclick="nextVal()">Suivant →</button>
@@ -308,7 +315,47 @@ input:focus,select:focus{border-color:var(--green)}
   </div>
 </div>
 
-<!-- S5: THANK YOU -->
+<!-- S5: VALUES 2 INTRO -->
+<div class="screen" id="s-val2-intro">
+<div class="container">
+  <div class="section-intro">
+    <div class="badge">Partie 3 sur 3 — Valeurs · Exploration en profondeur</div>
+    <h2>Vos valeurs — Deuxième exploration</h2>
+    <p>Cette seconde exploration aborde les mêmes thèmes sous un angle différent. Cette fois, vous évaluez chaque affirmation <strong>individuellement</strong> selon votre degré d'accord. Ces deux approches sont complémentaires : la première a révélé vos priorités instinctives, celle-ci mesure l'<strong>intensité</strong> de chaque valeur. Ensemble, elles donnent un portrait plus précis et plus fiable.</p>
+  </div>
+  <div class="instr-card">
+    <h3>📋 Mode d'emploi</h3>
+    <ul class="instr-steps">
+      <li><div class="step-n">1</div><div>Vous allez voir <strong>42 affirmations</strong>, une par une.</div></li>
+      <li><div class="step-n">2</div><div>Notez-la de <strong>1</strong> (Pas du tout d'accord) à <strong>6</strong> (Tout à fait d'accord).</div></li>
+      <li><div class="step-n">3</div><div>Répondez toujours en pensant à <strong>qui vous êtes vraiment</strong>.</div></li>
+      <li><div class="step-n">4</div><div>Même si certaines affirmations vous semblent familières, <strong>répondez à nouveau spontanément</strong>.</div></li>
+    </ul>
+  </div>
+  <div style="text-align:center"><button class="btn btn-primary" onclick="startValues2()">Démarrer →</button></div>
+</div>
+</div>
+
+<!-- S6: VALUES 2 LIKERT -->
+<div class="screen" id="s-values2">
+  <div class="disc-screen-wrap">
+    <div class="disc-progress-top">
+      <div class="disc-prog-label">
+        <span>Affirmation <span id="val2-cur">1</span> sur 42</span>
+        <span id="val2-pct-lbl">0% complété</span>
+      </div>
+      <div class="disc-prog-bar"><div class="disc-prog-fill" id="val2-prog-fill" style="width:0%"></div></div>
+    </div>
+    <div class="disc-card" id="val2-card-wrap"></div>
+    <div class="disc-error" id="val2-err">Veuillez noter cette affirmation pour continuer.</div>
+    <div class="disc-nav">
+      <button class="btn btn-ghost" id="val2-btn-prev" onclick="prevVal2()">← Précédent</button>
+      <button class="btn btn-primary" id="val2-btn-next" onclick="nextVal2()">Suivant →</button>
+    </div>
+  </div>
+</div>
+
+<!-- S7: THANK YOU -->
 <div class="screen" id="s-thankyou">
   <div class="thankyou-wrap">
     <div class="thankyou-card">
@@ -386,7 +433,7 @@ const VALUES_ITEMS = [
   {id:4,  d:"SO", t:"L'idée de passer une journée sans avoir été utile à quelqu'un me laisse un sentiment d'inachevé."},
   {id:5,  d:"IN", t:"Je préfère perdre une opportunité plutôt que de trahir ma façon d'être."},
   {id:6,  d:"TR", t:"Les règles et les repères me semblent nécessaires pour vivre ensemble de façon harmonieuse."},
-  {id:7,  d:"PO", t:"Avoir les moyens d'agir concrètement sur les situations qui me tiennent à cœur est important pour moi."},
+  {id:7,  d:"PO", t:"Je me sens frustré(e) quand je n'ai pas d'autorité formelle sur un projet qui m'implique."},
   {id:8,  d:"TH", t:"Je préfère une réponse rapide et pratique à une longue analyse qui retarde l'action."},
   {id:9,  d:"UT", t:"Je m'ennuie rapidement dans des activités dont je ne vois pas l'utilité concrète."},
   {id:10, d:"ES", t:"Je remarque spontanément quand quelque chose est beau ou harmonieux — que ce soit un lieu, un son, une image ou un geste — même dans les situations les plus ordinaires."},
@@ -400,7 +447,7 @@ const VALUES_ITEMS = [
   {id:18, d:"SO", t:"Je perçois instinctivement quand quelqu'un ne va pas, même sans qu'il me le dise."},
   {id:19, d:"IN", t:"Quand tout le monde pense pareil, je me méfie — je cherche instinctivement ce que les autres n'ont pas vu."},
   {id:20, d:"TR", t:"La stabilité et la continuité me semblent plus importantes que le changement permanent."},
-  {id:21, d:"PO", t:"Je me sens plus motivé(e) quand mes actions ont une portée visible sur mon entourage."},
+  {id:21, d:"PO", t:"Ce qui me motive vraiment, c'est d'avoir une influence réelle sur les décisions — pas seulement d'y contribuer."},
   {id:22, d:"TH", t:"Avant de me forger une opinion, j'ai besoin d'explorer plusieurs sources et d'analyser les données disponibles."},
   {id:23, d:"UT", t:"Je perds rapidement ma motivation quand je ne vois pas où mes efforts mènent concrètement."},
   {id:24, d:"ES", t:"La façon dont les choses sont présentées ou agencées influence directement mon envie de m'y intéresser."},
@@ -414,7 +461,7 @@ const VALUES_ITEMS = [
   {id:32, d:"SO", t:"Quand quelqu'un a besoin d'aide, j'agis spontanément sans calculer ce que ça va me coûter ni ce que j'en retirerai."},
   {id:33, d:"IN", t:"J'accorde plus d'importance à rester fidèle à ce que je suis qu'à être accepté(e) par le groupe."},
   {id:34, d:"TR", t:"Je respecte les institutions et les structures qui ont fait leurs preuves dans le temps."},
-  {id:35, d:"PO", t:"Obtenir la confiance et le respect des autres dans ce que j'entreprends est une motivation réelle pour moi."},
+  {id:35, d:"PO", t:"Je préfère être celui ou celle qui tranche plutôt que celui ou celle qui conseille."},
   {id:36, d:"TH", t:"Je prends un vrai plaisir à débattre d'idées complexes, même sans enjeu pratique immédiat."},
   {id:37, d:"UT", t:"Je préfère une solution imparfaite mais opérationnelle à une solution idéale qui tarde."},
   {id:38, d:"ES", t:"Quand je crée ou aménage quelque chose, l'aspect esthétique compte autant que la fonctionnalité."},
@@ -425,6 +472,73 @@ const VALUES_ITEMS = [
 ];
 
 const VAL_NAMES = {TH:"Cognitif",UT:"Utilitaire",ES:"Esthétique",SO:"Social",IN:"Individualiste",TR:"Traditionaliste",PO:"Politique"};
+
+// DATA — 42 PAIRS (choix forcé, 7 dimensions × 12 apparitions chacune, 21 combinaisons × 2)
+const PAIRS_DATA = [
+  // TH vs UT (×2)
+  {id:1,  a:{d:'TH',itemId:1},  b:{d:'UT',itemId:2}},
+  {id:2,  a:{d:'TH',itemId:22}, b:{d:'UT',itemId:30}},
+  // TH vs ES (×2)
+  {id:3,  a:{d:'TH',itemId:8},  b:{d:'ES',itemId:3}},
+  {id:4,  a:{d:'TH',itemId:29}, b:{d:'ES',itemId:31}},
+  // TH vs SO (×2)
+  {id:5,  a:{d:'TH',itemId:15}, b:{d:'SO',itemId:4}},
+  {id:6,  a:{d:'TH',itemId:36}, b:{d:'SO',itemId:25}},
+  // TH vs IN (×2)
+  {id:7,  a:{d:'TH',itemId:1},  b:{d:'IN',itemId:5}},
+  {id:8,  a:{d:'TH',itemId:29}, b:{d:'IN',itemId:19}},
+  // TH vs TR (×2)
+  {id:9,  a:{d:'TH',itemId:22}, b:{d:'TR',itemId:6}},
+  {id:10, a:{d:'TH',itemId:36}, b:{d:'TR',itemId:34}},
+  // TH vs PO (×2)
+  {id:11, a:{d:'TH',itemId:8},  b:{d:'PO',itemId:7}},
+  {id:12, a:{d:'TH',itemId:15}, b:{d:'PO',itemId:28}},
+  // UT vs ES (×2)
+  {id:13, a:{d:'UT',itemId:9},  b:{d:'ES',itemId:10}},
+  {id:14, a:{d:'UT',itemId:37}, b:{d:'ES',itemId:38}},
+  // UT vs SO (×2)
+  {id:15, a:{d:'UT',itemId:16}, b:{d:'SO',itemId:11}},
+  {id:16, a:{d:'UT',itemId:23}, b:{d:'SO',itemId:39}},
+  // UT vs IN (×2)
+  {id:17, a:{d:'UT',itemId:2},  b:{d:'IN',itemId:12}},
+  {id:18, a:{d:'UT',itemId:30}, b:{d:'IN',itemId:40}},
+  // UT vs TR (×2)
+  {id:19, a:{d:'UT',itemId:9},  b:{d:'TR',itemId:13}},
+  {id:20, a:{d:'UT',itemId:37}, b:{d:'TR',itemId:41}},
+  // UT vs PO (×2)
+  {id:21, a:{d:'UT',itemId:16}, b:{d:'PO',itemId:14}},
+  {id:22, a:{d:'UT',itemId:23}, b:{d:'PO',itemId:35}},
+  // ES vs SO (×2)
+  {id:23, a:{d:'ES',itemId:17}, b:{d:'SO',itemId:18}},
+  {id:24, a:{d:'ES',itemId:24}, b:{d:'SO',itemId:32}},
+  // ES vs IN (×2)
+  {id:25, a:{d:'ES',itemId:3},  b:{d:'IN',itemId:19}},
+  {id:26, a:{d:'ES',itemId:31}, b:{d:'IN',itemId:33}},
+  // ES vs TR (×2)
+  {id:27, a:{d:'ES',itemId:10}, b:{d:'TR',itemId:20}},
+  {id:28, a:{d:'ES',itemId:38}, b:{d:'TR',itemId:27}},
+  // ES vs PO (×2)
+  {id:29, a:{d:'ES',itemId:17}, b:{d:'PO',itemId:21}},
+  {id:30, a:{d:'ES',itemId:24}, b:{d:'PO',itemId:42}},
+  // SO vs IN (×2)
+  {id:31, a:{d:'SO',itemId:4},  b:{d:'IN',itemId:26}},
+  {id:32, a:{d:'SO',itemId:11}, b:{d:'IN',itemId:40}},
+  // SO vs TR (×2)
+  {id:33, a:{d:'SO',itemId:25}, b:{d:'TR',itemId:27}},
+  {id:34, a:{d:'SO',itemId:39}, b:{d:'TR',itemId:34}},
+  // SO vs PO (×2)
+  {id:35, a:{d:'SO',itemId:18}, b:{d:'PO',itemId:28}},
+  {id:36, a:{d:'SO',itemId:32}, b:{d:'PO',itemId:35}},
+  // IN vs TR (×2)
+  {id:37, a:{d:'IN',itemId:5},  b:{d:'TR',itemId:6}},
+  {id:38, a:{d:'IN',itemId:33}, b:{d:'TR',itemId:41}},
+  // IN vs PO (×2)
+  {id:39, a:{d:'IN',itemId:12}, b:{d:'PO',itemId:14}},
+  {id:40, a:{d:'IN',itemId:26}, b:{d:'PO',itemId:42}},
+  // TR vs PO (×2)
+  {id:41, a:{d:'TR',itemId:13}, b:{d:'PO',itemId:21}},
+  {id:42, a:{d:'TR',itemId:20}, b:{d:'PO',itemId:7}},
+];
 const DISC_NAMES = {D:"Dominant (Rouge)",I:"Influent (Jaune)",S:"Stable (Vert)",C:"Conforme (Bleu)"};
 
 // ================================================================
@@ -432,17 +546,22 @@ const DISC_NAMES = {D:"Dominant (Rouge)",I:"Influent (Jaune)",S:"Stable (Vert)",
 // ================================================================
 let userInfo = {};
 let discAns  = {};
+let pairAns  = {};
 let valAns   = {};
 let currentDiscIdx = 0;
 let currentValIdx  = 0;
+let currentVal2Idx = 0;
+let PAIRS_SHUFFLED = [];
+let PAIR_FLIPPED   = {};
 
 DISC_BLOCKS.forEach(b => discAns[b.id] = {most:null, least:null});
+PAIRS_DATA.forEach(p => pairAns[p.id] = null);
 VALUES_ITEMS.forEach(i => valAns[i.id] = null);
 
 // ================================================================
 // SCREENS
 // ================================================================
-const SCREENS = ['s-welcome','s-disc-intro','s-disc','s-val-intro','s-values','s-thankyou'];
+const SCREENS = ['s-welcome','s-disc-intro','s-disc','s-val-intro','s-values','s-val2-intro','s-values2','s-thankyou'];
 const PROGS   = [0, 5, 10, 55, 60, 100];
 
 function showScreen(id){
@@ -573,68 +692,78 @@ function updateDiscGlobalProg(){
 // VALUES
 // ================================================================
 // ================================================================
-// VALUES — ONE BY ONE
+// VALUES — PAIRS (choix forcé)
 // ================================================================
 function startValues(){
   currentValIdx = 0;
+  PAIRS_SHUFFLED = shuffle(PAIRS_DATA);
+  PAIRS_SHUFFLED.forEach(p => {
+    PAIR_FLIPPED[p.id] = Math.random() < 0.5;
+    pairAns[p.id] = null;
+  });
   showScreen('s-values');
-  renderValBlock(currentValIdx);
+  renderPair(currentValIdx);
 }
 
-function renderValBlock(idx){
-  const item = VALUES_ITEMS[idx];
-  const pct  = Math.round(idx/42*100);
+function renderPair(idx){
+  const pair    = PAIRS_SHUFFLED[idx];
+  const flipped = PAIR_FLIPPED[pair.id];
+  const left    = flipped ? pair.b : pair.a;
+  const right   = flipped ? pair.a : pair.b;
+  const leftItem  = VALUES_ITEMS.find(i => i.id === left.itemId);
+  const rightItem = VALUES_ITEMS.find(i => i.id === right.itemId);
+  const chosen  = pairAns[pair.id];
+  const pct     = Math.round(idx / 42 * 100);
 
-  document.getElementById('val-cur').textContent = idx+1;
-  document.getElementById('val-pct-lbl').textContent = pct+'% complété';
-  document.getElementById('val-prog-fill').style.width = pct+'%';
-  document.getElementById('val-btn-prev').disabled = (idx===0);
-  document.getElementById('val-btn-next').textContent = (idx===41) ? 'Terminer le diagnostic →' : 'Suivant →';
+  document.getElementById('val-cur').textContent      = idx + 1;
+  document.getElementById('val-pct-lbl').textContent  = pct + '% complété';
+  document.getElementById('val-prog-fill').style.width = pct + '%';
+  document.getElementById('val-btn-prev').disabled    = (idx === 0);
+  document.getElementById('val-btn-next').textContent = (idx === 41) ? 'Terminer le diagnostic →' : 'Suivant →';
   document.getElementById('val-err').classList.remove('show');
 
-  const selected = valAns[item.id];
-
   const html = `
-    <div class="disc-card-title">Affirmation ${idx+1} sur 42</div>
-    <div class="disc-card-sub" style="font-size:16px;color:var(--black);font-weight:500;font-style:italic;line-height:1.7;margin-bottom:32px;text-align:left;">« ${item.t} »</div>
-    <div style="display:flex;justify-content:center;gap:8px;margin-bottom:14px;">
-      ${[1,2,3,4,5,6].map(v=>`<button class="lk-btn${selected===v?' active':''}" onclick="selVal(${item.id},${v})" style="width:52px;height:52px;font-size:16px;font-weight:700;">${v}</button>`).join('')}
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gray);padding:0 6px;">
-      <span>Pas du tout<br>d'accord</span>
-      <span style="text-align:right">Tout à fait<br>d'accord</span>
+    <div class="disc-card-title">Paire ${idx + 1} sur 42</div>
+    <div class="disc-card-sub">Cliquez sur l'affirmation qui vous ressemble le <strong>plus</strong>.</div>
+    <div class="pair-wrap">
+      <div class="pair-card${chosen === 'left' ? ' selected' : ''}" onclick="selPair(${pair.id},'left')">
+        « ${leftItem.t} »
+      </div>
+      <div class="pair-card${chosen === 'right' ? ' selected' : ''}" onclick="selPair(${pair.id},'right')">
+        « ${rightItem.t} »
+      </div>
     </div>`;
 
   document.getElementById('val-card-wrap').innerHTML = html;
 }
 
-function selVal(itemId, score){
-  valAns[itemId] = score;
-  renderValBlock(currentValIdx);
-  const done = Object.values(valAns).filter(v=>v!==null).length;
-  const pct  = Math.round(60+done/42*35);
-  document.getElementById('prog').style.width = pct+'%';
+function selPair(pairId, side){
+  pairAns[pairId] = side;
+  renderPair(currentValIdx);
+  const done = Object.values(pairAns).filter(v => v !== null).length;
+  const pct  = Math.round(60 + done / 42 * 35);
+  document.getElementById('prog').style.width = pct + '%';
 }
 
 function nextVal(){
-  const item = VALUES_ITEMS[currentValIdx];
-  if(valAns[item.id]===null){
+  const pair = PAIRS_SHUFFLED[currentValIdx];
+  if(pairAns[pair.id] === null){
     document.getElementById('val-err').classList.add('show');
     return;
   }
   document.getElementById('val-err').classList.remove('show');
-  if(currentValIdx===41){
-    submitDiagnostic();
+  if(currentValIdx === 41){
+    showScreen('s-val2-intro');
   } else {
     currentValIdx++;
-    renderValBlock(currentValIdx);
+    renderPair(currentValIdx);
   }
 }
 
 function prevVal(){
-  if(currentValIdx>0){
+  if(currentValIdx > 0){
     currentValIdx--;
-    renderValBlock(currentValIdx);
+    renderPair(currentValIdx);
   }
 }
 
@@ -655,24 +784,102 @@ function computeScores(){
   ['D','I','S','C'].forEach(k=>dPct[k]=Math.round(dsc[k]/48*100));
 
   const vsc={TH:0,UT:0,ES:0,SO:0,IN:0,TR:0,PO:0};
-  const INVERTED_IDS = [8, 15];
-  VALUES_ITEMS.forEach(it=>{
-    const score = valAns[it.id];
-    vsc[it.d] += INVERTED_IDS.includes(it.id) ? (7 - score) : score;
+  PAIRS_SHUFFLED.forEach(pair => {
+    const chosen = pairAns[pair.id];
+    if(!chosen) return;
+    const flipped = PAIR_FLIPPED[pair.id];
+    const winner  = chosen === 'left'
+      ? (flipped ? pair.b : pair.a)
+      : (flipped ? pair.a : pair.b);
+    vsc[winner.d]++;
   });
   const vPct={};
-  Object.keys(vsc).forEach(k=>vPct[k]=Math.min(99,Math.round(vsc[k]/36*100)));
+  Object.keys(vsc).forEach(k => vPct[k] = Math.min(99, Math.round(vsc[k] / 12 * 100)));
 
-  return {dPct, vPct, dsc, vsc};
+  // Scoring Likert 1-6
+  const vsc2={TH:0,UT:0,ES:0,SO:0,IN:0,TR:0,PO:0};
+  const INVERTED_IDS = [8, 15];
+  VALUES_ITEMS.forEach(it => {
+    const score = valAns[it.id];
+    if(score === null || score === undefined) return;
+    vsc2[it.d] += INVERTED_IDS.includes(it.id) ? (7 - score) : score;
+  });
+  const vPct2={};
+  Object.keys(vsc2).forEach(k => vPct2[k] = Math.min(99, Math.round(vsc2[k] / 36 * 100)));
+
+  return {dPct, vPct, vPct2, dsc, vsc, vsc2};
 }
 
 // ================================================================
-// SUBMIT
+// VALUES 2 — LIKERT 1-6
 // ================================================================
+function startValues2(){
+  currentVal2Idx = 0;
+  showScreen('s-values2');
+  renderVal2Block(currentVal2Idx);
+}
+
+function renderVal2Block(idx){
+  const item = VALUES_ITEMS[idx];
+  const pct  = Math.round(idx / 42 * 100);
+
+  document.getElementById('val2-cur').textContent      = idx + 1;
+  document.getElementById('val2-pct-lbl').textContent  = pct + '% complété';
+  document.getElementById('val2-prog-fill').style.width = pct + '%';
+  document.getElementById('val2-btn-prev').disabled    = (idx === 0);
+  document.getElementById('val2-btn-next').textContent = (idx === 41) ? 'Terminer le diagnostic →' : 'Suivant →';
+  document.getElementById('val2-err').classList.remove('show');
+
+  const selected = valAns[item.id];
+
+  const html = `
+    <div class="disc-card-title">Affirmation ${idx + 1} sur 42</div>
+    <div class="disc-card-sub" style="font-size:16px;color:var(--black);font-weight:500;font-style:italic;line-height:1.7;margin-bottom:32px;text-align:left;">« ${item.t} »</div>
+    <div style="display:flex;justify-content:center;gap:10px;margin-bottom:14px;">
+      ${[1,2,3,4,5,6].map(v=>`<button class="lk-btn${selected===v?' active':''}" onclick="selVal2(${item.id},${v})" style="width:52px;height:52px;font-size:16px;font-weight:700;">${v}</button>`).join('')}
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gray);padding:0 6px;">
+      <span>Pas du tout<br>d'accord</span>
+      <span style="text-align:right">Tout à fait<br>d'accord</span>
+    </div>`;
+
+  document.getElementById('val2-card-wrap').innerHTML = html;
+}
+
+function selVal2(itemId, score){
+  valAns[itemId] = score;
+  renderVal2Block(currentVal2Idx);
+  const done = Object.values(valAns).filter(v => v !== null).length;
+  const pct  = Math.round(80 + done / 42 * 15);
+  document.getElementById('prog').style.width = pct + '%';
+}
+
+function nextVal2(){
+  const item = VALUES_ITEMS[currentVal2Idx];
+  if(valAns[item.id] === null){
+    document.getElementById('val2-err').classList.add('show');
+    return;
+  }
+  document.getElementById('val2-err').classList.remove('show');
+  if(currentVal2Idx === 41){
+    submitDiagnostic();
+  } else {
+    currentVal2Idx++;
+    renderVal2Block(currentVal2Idx);
+  }
+}
+
+function prevVal2(){
+  if(currentVal2Idx > 0){
+    currentVal2Idx--;
+    renderVal2Block(currentVal2Idx);
+  }
+}
 async function submitDiagnostic(){
-  const {dPct, vPct} = computeScores();
-  const sorted = Object.entries(dPct).sort((a,b)=>b[1]-a[1]);
+  const {dPct, vPct, vPct2} = computeScores();
+  const sorted  = Object.entries(dPct).sort((a,b)=>b[1]-a[1]);
   const vSorted = Object.entries(vPct).sort((a,b)=>b[1]-a[1]);
+  const vSorted2= Object.entries(vPct2).sort((a,b)=>b[1]-a[1]);
   const date = new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
 
   const payload = {
@@ -691,20 +898,36 @@ async function submitDiagnostic(){
     'S — Stable':    dPct.S+'%',
     'C — Conforme': dPct.C+'%',
     'Style dominant DISC': sorted[0][1]+'% — '+DISC_NAMES[sorted[0][0]]+'  |  '+sorted[1][1]+'% — '+DISC_NAMES[sorted[1][0]],
-    '--- VALEURS (sur 100%) ---': '---',
-    'Théorique':       vPct.TH+'%',
-    'Utilitaire':      vPct.UT+'%',
-    'Esthétique':      vPct.ES+'%',
-    'Social':          vPct.SO+'%',
-    'Individualiste':  vPct.IN+'%',
-    'Traditionaliste': vPct.TR+'%',
-    'Politique':       vPct.PO+'%',
-    'Classement valeurs': vSorted.map((([k,v],i)=>`${i+1}. ${VAL_NAMES[k]} (${v}%)`)).join(' | '),
+    '--- VALEURS PAIRES (sur 100%) ---': '---',
+    'Cognitif (paires)':        vPct.TH+'%',
+    'Utilitaire (paires)':      vPct.UT+'%',
+    'Esthétique (paires)':      vPct.ES+'%',
+    'Social (paires)':          vPct.SO+'%',
+    'Individualiste (paires)':  vPct.IN+'%',
+    'Traditionaliste (paires)': vPct.TR+'%',
+    'Politique (paires)':       vPct.PO+'%',
+    'Classement valeurs (paires)': vSorted.map((([k,v],i)=>`${i+1}. ${VAL_NAMES[k]} (${v}%)`)).join(' | '),
+    '--- VALEURS LIKERT 1-6 (sur 100%) ---': '---',
+    'Cognitif (1-6)':        vPct2.TH+'%',
+    'Utilitaire (1-6)':      vPct2.UT+'%',
+    'Esthétique (1-6)':      vPct2.ES+'%',
+    'Social (1-6)':          vPct2.SO+'%',
+    'Individualiste (1-6)':  vPct2.IN+'%',
+    'Traditionaliste (1-6)': vPct2.TR+'%',
+    'Politique (1-6)':       vPct2.PO+'%',
+    'Classement valeurs (1-6)': vSorted2.map((([k,v],i)=>`${i+1}. ${VAL_NAMES[k]} (${v}%)`)).join(' | '),
     'Réponses DISC': DISC_BLOCKS.map(b => {
       const a = discAns[b.id];
       return `B${b.id}:+${a.most}-${a.least}`;
     }).join('|'),
-    'Réponses Valeurs': VALUES_ITEMS.map(it => valAns[it.id]).join(''),
+    'Réponses Valeurs (paires)': PAIRS_SHUFFLED.map(p => {
+      const chosen = pairAns[p.id];
+      if(!chosen) return '?';
+      const flipped = PAIR_FLIPPED[p.id];
+      const winner  = chosen === 'left' ? (flipped ? p.b : p.a) : (flipped ? p.a : p.b);
+      return `P${p.id}:${winner.d}`;
+    }).join('|'),
+    'Réponses Valeurs (1-6)': VALUES_ITEMS.map(it => valAns[it.id] || '?').join(''),
   };
 
   document.getElementById('loading').classList.add('show');
